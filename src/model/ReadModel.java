@@ -7,12 +7,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
-public class readModel {
+public class ReadModel {
   //private String filepath;
 
-  public void read(File selectFile) {
+  public boolean read(File selectFile, ArrayList<ReadData> list) {
     Workbook workbook = null;
+    boolean sw = false;
     try {
       // ワークブックを開く
       //InputStream ins = new FileInputStream(filePath);
@@ -27,26 +29,24 @@ public class readModel {
       Cell cell = row.getCell(0);
 
       // 文字列として取得
-      String strValue = cell.getStringCellValue();
 
-      System.out.println(strValue);
-    } catch (InvalidFormatException e) {
+      list.add(new ReadData(cell.getStringCellValue()));
+      //String strValue = cell.getStringCellValue();
+
+      //System.out.println(strValue);
+    } catch (Exception e) {
       e.printStackTrace();
-      System.out.println("xls読み込み失敗");
-      System.exit(0);
-    }catch (IOException e){
-      e.printStackTrace();
-      System.out.println("ファイルパス指定失敗");
-      System.exit(1);
+      return sw;
     }finally {
       try {
         if (workbook != null){
           workbook.close();
         }
-      }catch (IOException e){
+      }catch (Exception e){
         e.printStackTrace();
-        System.out.println("閉じる失敗");
+        return sw;
       }
     }
+    return sw = true;
   }
 }
