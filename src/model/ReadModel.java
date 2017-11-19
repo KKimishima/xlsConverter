@@ -14,6 +14,7 @@ public class ReadModel {
 
   public boolean read(File selectFile, ArrayList<ReadData> list) {
     Workbook workbook = null;
+    list.clear();
     boolean sw = false;
     try {
       // ワークブックを開く

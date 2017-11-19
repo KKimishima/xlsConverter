@@ -23,13 +23,16 @@ public class viewController {
     fileChooser.setTitle("読み込むファイルを選択してください");
     File selectFile = fileChooser.showOpenDialog(null);
     if (!readModel.read(selectFile,list)){
+      list.clear();
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setTitle("取り込みエラー");
-      alert.setContentText("ファイル形式がつがいます");
+      alert.setContentText("ファイルが違います!!!!");
       alert.show();
       return;
     }
-
     fileName.setText(selectFile.getName());
+    //for (ReadData str: list){
+    //  System.out.println(str.getValue());
+    //}
   }
 }
