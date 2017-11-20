@@ -33,14 +33,21 @@ public class ViewController {
       return;
     }
     fileName.setText(selectFile.getName());
-    //for (ReadData str: list){
-    //  System.out.println(str.getValue());
-    //}
   }
+
   public void onOut(){
+    // 配列がからなら落とす
+    if (this.list.isEmpty()){
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("出力エラー");
+      alert.setContentText("入力ファイルを選択してください");
+      alert.show();
+      return;
+    }
+
     fileChooser.setTitle("ファイル保存");
     fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-    fileChooser.setInitialFileName("hogehoge.txt");
+    fileChooser.setInitialFileName(list.get(0).getValue()+".txt");
     File outFile = fileChooser.showSaveDialog(null);
     try{
       FileWriter fos = new FileWriter(outFile);
