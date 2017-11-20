@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import model.OutModel;
 import model.ReadData;
 import model.ReadModel;
 
@@ -20,6 +21,7 @@ public class ViewController {
   ReadModel readModel = new ReadModel();
   FileChooser fileChooser = new FileChooser();
   ArrayList<ReadData> list = new ArrayList<>();
+  OutModel outModel = new OutModel();
 
   public void onRead(){
     fileChooser.setTitle("読み込むファイルを選択してください");
@@ -47,17 +49,19 @@ public class ViewController {
 
     fileChooser.setTitle("ファイル保存");
     fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-    fileChooser.setInitialFileName(list.get(0).getValue()+".txt");
+    fileChooser.setInitialFileName(list.get(0).getValue()+".xls");
     File outFile = fileChooser.showSaveDialog(null);
-    try{
-      FileWriter fos = new FileWriter(outFile);
-      fos.write("test\n");
-      fos.flush();
-      fos.close();
-    }catch (IOException e){
-      e.printStackTrace();
 
+    if(outModel.OutDate(list,outFile)){
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("結果");
+      alert.setContentText("出力成功");
+      alert.show();
+    }else {
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("結果");
+      alert.setContentText("出力失敗");
+      alert.show();
     }
-
   }
 }
