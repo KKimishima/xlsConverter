@@ -10,7 +10,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class ReadModel {
-  //private String filepath;
 
   public boolean read(File selectFile, ArrayList<ReadData> list) {
     Workbook workbook = null;
@@ -30,11 +29,8 @@ public class ReadModel {
       Cell cell = row.getCell(0);
 
       // 文字列として取得
-
       list.add(new ReadData(cell.getStringCellValue()));
-      //String strValue = cell.getStringCellValue();
 
-      //System.out.println(strValue);
     } catch (Exception e) {
       e.printStackTrace();
       return sw;
