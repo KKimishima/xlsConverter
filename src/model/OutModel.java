@@ -26,13 +26,14 @@ public class OutModel {
   public boolean OutDate(ArrayList<ReadData> list,File outFile){
     FileOutputStream fos = null;
     try{
-      //Sheet sheet = workbook.getSheet("Sheet1");
       Sheet sheet = workbook.getSheetAt(0);
       for (int i = 0;i< list.size();i++){
 
-        Row row = sheet.getRow(i);
-        Cell cell = row.createCell(1);
+        Row row = sheet.getRow(i +3);
+        Cell cell = row.createCell(0);
+        Cell cell1 = row.createCell(1);
         cell.setCellValue(list.get(i).getValue());
+        cell1.setCellValue(list.get(i).getDataStr());
       }
       fos = new FileOutputStream(outFile);
       workbook.write(fos);

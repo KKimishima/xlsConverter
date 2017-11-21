@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class ReadModel {
 
   public boolean read(File selectFile, ArrayList<ReadData> list) {
+    // 開始の行
+    int i = 8;
     Workbook workbook = null;
     list.clear();
     boolean sw = false;
@@ -18,17 +20,23 @@ public class ReadModel {
 
       // シートの取得
       Sheet sheet = workbook.getSheetAt(0);
-
-      // 文字列として取得
-
-      for (int i = 8;i <40;i++){
-      //for (int i = 0;i <sheet.getLastRowNum();i++){
-        // 列の取得
+      // 空文字が来るまで文字列として取得
+      while (true) {
         Row row = sheet.getRow(i);
-        // セルの取得
+
         Cell cell = row.getCell(2);
-        // 配列に収納
-        list.add(new ReadData(cell.getStringCellValue()));
+        Cell cell2 = row.getCell(0);
+        if (cell.getStringCellValue() == ""){
+          break;
+        }
+        i++;
+
+        ReadData readData = new ReadData(
+            cell.getStringCellValue(),
+            cell2.getStringCellValue()
+        );
+
+        list.add(readData);
       }
     } catch (Exception e) {
       e.printStackTrace();
