@@ -30,11 +30,14 @@ public class ViewController {
       list.clear();
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setTitle("取り込みエラー");
-      alert.setContentText("ファイルが違います!!!!");
+      alert.setContentText("ファイルが違います!!!!\nまたは、選択ファイルを閉じてください");
       alert.show();
       return;
     }
     fileName.setText(selectFile.getName());
+    for(int i =0;i < list.size();i++){
+      System.out.println(list.get(i).getValue());
+    }
   }
 
   public void onOut(){

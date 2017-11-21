@@ -21,16 +21,19 @@ public class ReadModel {
       workbook = WorkbookFactory.create(selectFile);
 
       // シートの取得
-      Sheet sheet = workbook.getSheet("sheet1");
-
-      // 列の取得
-      Row row = sheet.getRow(0);
-      // セルの取得
-      Cell cell = row.getCell(0);
+      Sheet sheet = workbook.getSheetAt(0);
 
       // 文字列として取得
-      list.add(new ReadData(cell.getStringCellValue()));
 
+      for (int i = 8;i <40;i++){
+      //for (int i = 0;i <sheet.getLastRowNum();i++){
+        // 列の取得
+        Row row = sheet.getRow(i);
+        // セルの取得
+        Cell cell = row.getCell(2);
+        // 配列に収納
+        list.add(new ReadData(cell.getStringCellValue()));
+      }
     } catch (Exception e) {
       e.printStackTrace();
       return sw;

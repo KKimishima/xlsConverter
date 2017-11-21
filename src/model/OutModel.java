@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import model.ReadData;
 
 public class OutModel {
   private Workbook workbook;
@@ -25,10 +26,14 @@ public class OutModel {
   public boolean OutDate(ArrayList<ReadData> list,File outFile){
     FileOutputStream fos = null;
     try{
-      Sheet sheet = workbook.getSheet("Sheet1");
-      Row row = sheet.getRow(0);
-      Cell cell = row.getCell(1);
-      cell.setCellValue(list.get(0).getValue());
+      //Sheet sheet = workbook.getSheet("Sheet1");
+      Sheet sheet = workbook.getSheetAt(0);
+      for (int i = 0;i< list.size();i++){
+
+        Row row = sheet.getRow(i);
+        Cell cell = row.createCell(1);
+        cell.setCellValue(list.get(i).getValue());
+      }
       fos = new FileOutputStream(outFile);
       workbook.write(fos);
     }catch (Exception e){
