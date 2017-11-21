@@ -42,6 +42,8 @@ public class OutModel {
         Cell checkCell = row.createCell(6);
         Cell foo3Cell = row.createCell(7);
 
+        Cell barCell = row.createCell(8);
+
         hoge1Cell.setCellValue(hoge1);
         hoge2Cell.setCellValue(list.get(i).getDataStr());
         hoge3Cell.setCellValue(hoge3);
@@ -51,6 +53,9 @@ public class OutModel {
         foo2Cell.setCellValue(list.get(i).getHogeCode());
         checkCell.setCellValue(list.get(i).getCheck());
         foo3Cell.setCellValue(list.get(i).getKingaku());
+
+        barCell.setCellValue(list.get(i).getConcatenate());
+
         //cell.setCellValue(list.get(i).getHogeName());
         //cell1.setCellValue(list.get(i).getDataStr());
       }

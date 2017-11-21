@@ -29,7 +29,8 @@ public class ReadModel {
         Cell hogeNameCell = row.getCell(2);
         Cell bar2Code2Cell = row.getCell(3);
         Cell checkCell = row.getCell(4);
-        Cell kingaku = row.getCell(5);
+        Cell concatenateCell = row.getCell(5);
+        Cell kingakuCell = row.getCell(6);
         i++;
 
         if (dataStrCell.getStringCellValue() == ""){
@@ -42,7 +43,8 @@ public class ReadModel {
             hogeNameCell.getStringCellValue(),
             (int)bar2Code2Cell.getNumericCellValue(),
             checkCell.getStringCellValue(),
-            (int)kingaku.getNumericCellValue()
+            (int)kingakuCell.getNumericCellValue(),
+            concatenateCell.getStringCellValue()
         );
         list.add(readData);
       }

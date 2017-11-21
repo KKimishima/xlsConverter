@@ -8,14 +8,16 @@ public class ReadData {
   private int bar2Code;
   private String check;
   private int kingaku;
+  private String concatenate;
 
-  public ReadData(String dataStr,int hogeCode, String hogeName, int bar2Code, String check, int kingaku){
+  public ReadData(String dataStr,int hogeCode, String hogeName, int bar2Code, String check, int kingaku,String concatenate ){
     this.dataStr = dataStr;
     this.hogeName = hogeName;
     this.hogeCode = hogeCode;
     this.bar2Code = bar2Code;
     this.check = check;
     this.kingaku = kingaku;
+    this.concatenate = concatenate + ":結合:" +dataStr;
   }
 
   public int getHogeCode() {
@@ -40,5 +42,9 @@ public class ReadData {
 
   public String getCheck() {
     return check;
+  }
+
+  public String getConcatenate() {
+    return concatenate;
   }
 }
