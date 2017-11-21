@@ -9,10 +9,9 @@ import model.ReadData;
 import model.ReadModel;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ViewController {
   @FXML
@@ -22,6 +21,7 @@ public class ViewController {
   FileChooser fileChooser = new FileChooser();
   ArrayList<ReadData> list = new ArrayList<>();
   OutModel outModel = new OutModel();
+  LocalDateTime now = LocalDateTime.now();
 
   public void onRead(){
     fileChooser.setTitle("読み込むファイルを選択してください");
@@ -35,9 +35,6 @@ public class ViewController {
       return;
     }
     fileName.setText(selectFile.getName());
-    for(int i =0;i < list.size();i++){
-      System.out.println(list.get(i).getValue());
-    }
   }
 
   public void onOut(){
@@ -52,7 +49,7 @@ public class ViewController {
 
     fileChooser.setTitle("ファイル保存");
     fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-    fileChooser.setInitialFileName(list.get(0).getValue()+".xls");
+    fileChooser.setInitialFileName("outData"+now.toString() +".xls");
     File outFile = fileChooser.showSaveDialog(null);
 
     if(outModel.OutDate(list,outFile)){

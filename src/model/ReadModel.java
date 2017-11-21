@@ -9,13 +9,12 @@ public class ReadModel {
 
   public boolean read(File selectFile, ArrayList<ReadData> list) {
     // 開始の行
-    int i = 8;
+    int i = 7;
     Workbook workbook = null;
     list.clear();
     boolean sw = false;
     try {
       // ワークブックを開く
-      //InputStream ins = new FileInputStream(filePath);
       workbook = WorkbookFactory.create(selectFile);
 
       // シートの取得
@@ -24,18 +23,27 @@ public class ReadModel {
       while (true) {
         Row row = sheet.getRow(i);
 
-        Cell cell = row.getCell(2);
-        Cell cell2 = row.getCell(0);
-        if (cell.getStringCellValue() == ""){
-          break;
-        }
+        // セルの値取得
+        Cell dataStrCell = row.getCell(0);
+        Cell hogeCodeCell = row.getCell(1);
+        Cell hogeNameCell = row.getCell(2);
+        Cell bar2Code2Cell = row.getCell(3);
+        Cell checkCell = row.getCell(4);
+        Cell kingaku = row.getCell(5);
         i++;
 
+        if (dataStrCell.getStringCellValue() == ""){
+          break;
+        }
+        // オブジェクにセット
         ReadData readData = new ReadData(
-            cell.getStringCellValue(),
-            cell2.getStringCellValue()
+            dataStrCell.getStringCellValue(),
+            (int)hogeCodeCell.getNumericCellValue(),
+            hogeNameCell.getStringCellValue(),
+            (int)bar2Code2Cell.getNumericCellValue(),
+            checkCell.getStringCellValue(),
+            (int)kingaku.getNumericCellValue()
         );
-
         list.add(readData);
       }
     } catch (Exception e) {
@@ -45,6 +53,7 @@ public class ReadModel {
       try {
         if (workbook != null){
           workbook.close();
+          return true;
         }
       }catch (Exception e){
         e.printStackTrace();

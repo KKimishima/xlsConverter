@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import model.ReadData;
 
 public class OutModel {
+  private final int hoge1 = 11;
+  private final int hoge3 = 22;
   private Workbook workbook;
   File file = new File("xls/templeTest.xls");
 
@@ -30,10 +32,27 @@ public class OutModel {
       for (int i = 0;i< list.size();i++){
 
         Row row = sheet.getRow(i +3);
-        Cell cell = row.createCell(0);
-        Cell cell1 = row.createCell(1);
-        cell.setCellValue(list.get(i).getValue());
-        cell1.setCellValue(list.get(i).getDataStr());
+        Cell hoge1Cell = row.createCell(0);
+        Cell hoge2Cell = row.createCell(1);
+        Cell hoge3Cell = row.createCell(2);
+        Cell hoge4Cell = row.createCell(3);
+
+        Cell foo1Cell = row.createCell(4);
+        Cell foo2Cell = row.createCell(5);
+        Cell checkCell = row.createCell(6);
+        Cell foo3Cell = row.createCell(7);
+
+        hoge1Cell.setCellValue(hoge1);
+        hoge2Cell.setCellValue(list.get(i).getDataStr());
+        hoge3Cell.setCellValue(hoge3);
+        hoge4Cell.setCellValue(list.get(i).getBar2Code());
+
+        foo1Cell.setCellValue(list.get(i).getHogeName());
+        foo2Cell.setCellValue(list.get(i).getHogeCode());
+        checkCell.setCellValue(list.get(i).getCheck());
+        foo3Cell.setCellValue(list.get(i).getKingaku());
+        //cell.setCellValue(list.get(i).getHogeName());
+        //cell1.setCellValue(list.get(i).getDataStr());
       }
       fos = new FileOutputStream(outFile);
       workbook.write(fos);

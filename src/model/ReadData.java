@@ -1,22 +1,44 @@
 package model;
 
+
 public class ReadData {
-  private String value;
   private String dataStr;
-  public ReadData(String value,String dataStr){
-    this.value = value;
+  private int hogeCode;
+  private String hogeName;
+  private int bar2Code;
+  private String check;
+  private int kingaku;
+
+  public ReadData(String dataStr,int hogeCode, String hogeName, int bar2Code, String check, int kingaku){
     this.dataStr = dataStr;
+    this.hogeName = hogeName;
+    this.hogeCode = hogeCode;
+    this.bar2Code = bar2Code;
+    this.check = check;
+    this.kingaku = kingaku;
   }
 
-  public void setValue(String value) {
-    this.value = value;
+  public int getHogeCode() {
+    return hogeCode;
+  }
+
+  public int getKingaku() {
+    return kingaku;
+  }
+
+  public String getHogeName() {
+    return hogeName;
+  }
+
+  public int getBar2Code() {
+    return bar2Code;
   }
 
   public String getDataStr() {
     return dataStr;
   }
 
-  public String getValue() {
-    return value;
+  public String getCheck() {
+    return check;
   }
 }
